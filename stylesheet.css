@@ -1,0 +1,89 @@
+@import url('https://fonts.googleapis.com/css?family=Caveat+Brush');
+
+body {
+    background: #190f3a;
+    color: #fff;
+    font-family: 'Caveat Brush', cursive;
+    font-size: 2em;
+    text-align: center;
+}
+
+canvas {
+    border: .2em solid #fff;
+    height: 70vh;
+}
+
+.controls {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    padding: 1em;
+    text-decoration: none;
+    color: #f0f0f0;
+    font-family: 'Caveat Brush', cursive;
+}
+
+#score {
+    margin-bottom: .5em;
+}
+
+.controls:hover {
+    color: #545454;
+}
+
+.modal {
+    font-family: sans-serif;
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    background-color: #f4f4f4;
+    color: #333;
+    font-size: .5em;
+    text-align: left;
+    margin: 10% auto;
+    max-width: 500px;
+    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 7px 20px 0 rgba(0, 0, 0, 0.17);
+    animation-name: modalopen;
+    animation-duration: 1s;
+}
+
+.modal-header h2 {
+    margin: 0;
+    font-size: 1em;
+}
+
+.modal-header {
+    background: #003366;
+    padding: 15px;
+    color: #fff;
+}
+
+.modal-body {
+    padding: 10px 20px;
+}
+
+.closeBtn {
+    float: right;
+    font-size: 30px;
+    color: #fff;
+}
+
+.closeBtn:hover, .closeBtn:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+@keyframes modalopen {
+    from{opacity: 0}
+    to {opacity: 1}
+}
