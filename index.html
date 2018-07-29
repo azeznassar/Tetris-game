@@ -5,12 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Tetris Game</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
     <link rel="stylesheet" href="stylesheet.css">
 </head>
 <body>
     <div id="score"></div>
     <canvas id="tetris" width="240" height="400"/></canvas>
     <a href="#/" class="controls">Controls</a>
+    <a href="#/" class="highScores">High Scores</a>
+    <a href="https://github.com/azeznassar"><i class="fab fa-github"></i></a>
+    <a href="https://codepen.io/azez"><i class="fab fa-codepen"></i></a>
+
 
     <div class="modal">
             <div class="modal-content">
@@ -28,6 +33,37 @@
                 </div>
             </div>
         </div>
+
+        <div class="modal2">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <span class="closeBtn2">&times;</span>
+                    <h2>High Scores</h2>
+                </div>
+                <div class="modal-body">
+                    <ol class="scoreList">
+                        <li="sli"></li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal3">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <span class="closeBtn3">&times;</span>
+                    <h2>Submit your score</h2>
+                </div>
+                <div class="modal-body">
+                    <form class="highScoreForm">
+                        <input type="text" placeholder="Your name or initials" class="nameInput" required>
+                        <button type="submit" name="submit" class="submitBtn">Submit</button>
+                        <p class="score"></p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    <script src="https://www.gstatic.com/firebasejs/5.3.0/firebase.js"></script>
     <script src="main.js"></script>
 </body>
 </html>

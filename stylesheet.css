@@ -13,25 +13,41 @@ canvas {
     height: 70vh;
 }
 
-.controls {
+.controls, .highScores {
     position: absolute;
-    bottom: 0;
+    bottom: 35px;
     right: 0;
-    padding: 1em;
+    margin: 1.5em;
     text-decoration: none;
     color: #f0f0f0;
     font-family: 'Caveat Brush', cursive;
+}
+
+.highScores {
+    bottom: 0;
+}
+
+.fa-github, .fa-codepen {
+    position: absolute;
+    bottom: 10px;
+    left: 50px;
+    margin-bottom: 1em;
+    color: #fff;
+}
+
+.fa-codepen {
+    left: 100px;
 }
 
 #score {
     margin-bottom: .5em;
 }
 
-.controls:hover {
+.controls:hover, .highScores:hover, .fa-github:hover, .fa-codepen:hover {
     color: #545454;
 }
 
-.modal {
+.modal, .modal2, .modal3 {
     font-family: sans-serif;
     display: none;
     position: fixed;
@@ -71,13 +87,34 @@ canvas {
     padding: 10px 20px;
 }
 
-.closeBtn {
+.submitBtn {
+    padding: 0.2rem 1rem;
+    background: #222;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    color: #fff;
+}
+
+.submitBtn:hover {
+    background: #999;
+}
+
+.highScoreForm {
+    display: flex;
+}
+
+.score {
+    padding-left: 1rem;
+}
+
+.closeBtn, .closeBtn2, .closeBtn3 {
     float: right;
     font-size: 30px;
     color: #fff;
 }
 
-.closeBtn:hover, .closeBtn:focus {
+.closeBtn:hover, .closeBtn:focus, .closeBtn2:hover, .closeBtn2:focus, .closeBtn3:hover, .closeBtn4:focus {
     color: #000;
     text-decoration: none;
     cursor: pointer;

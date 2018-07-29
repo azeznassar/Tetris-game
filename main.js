@@ -1,5 +1,9 @@
 const canvas = document.querySelector('#tetris');
 const ctx = canvas.getContext('2d');
+let modal3 = document.querySelector('.modal3');
+let closeBtn3 = document.getElementsByClassName('closeBtn3')[0];
+let submitBtn = document.querySelector('.highScoreForm');
+let nameInput = document.querySelector('.nameInput');
 
 ctx.scale(20, 20);
 
@@ -139,10 +143,29 @@ function playerReset() {
     player.pos.y = 0;
     player.pos.x = (arena[0].length / 2 | 0) - (player.matrix[0].length / 2 | 0);
     if (collide(arena, player)) {
+        currentScore = player.score;
         arena.forEach(row => row.fill(0));
+        modal3.style.display = 'block';
+        document.querySelector('.score').textContent = `Your score was: ${player.score}`;
+        submitBtn.addEventListener('submit', (e) => {
+            modal3.style.display = 'none';
+            reload();
+            e.preventDefault();
+            input = {
+                name: nameInput.value,
+                score: currentScore
+            }
+            rootRef.push(input);
+            closeInput();
+        });
+        closeBtn3.addEventListener('click', closeInput);
+    }
+}
+
+function closeInput() {  
+        modal3.style.display = 'none';
         player.score = 0;
         updateScore();
-    }
 }
 
 function playerRotate(direction) {
@@ -249,3 +272,62 @@ window.addEventListener('click', (e) => {
         modal.style.display = 'none' 
     }
 });
+
+
+let modal2 = document.querySelector('.modal2');
+let btnHiScore = document.querySelector('.highScores');
+let closeBtn2 = document.getElementsByClassName('closeBtn2')[0];
+
+
+btnHiScore.addEventListener('click', () => modal2.style.display = 'block');
+closeBtn2.addEventListener('click', () => modal2.style.display = 'none');
+window.addEventListener('click', (e) => {
+    if(e.target == modal2) {
+        modal2.style.display = 'none' 
+    }
+});
+
+
+let config = {
+    apiKey: "AIzaSyCR1koFL8dMfx6tzPfgW4Xo5BF3CCXA-cI",
+    authDomain: "tetris-game-60854.firebaseapp.com",
+    databaseURL: "https://tetris-game-60854.firebaseio.com",
+    projectId: "tetris-game-60854",
+    storageBucket: "",
+    messagingSenderId: "984622444173"
+  };
+  firebase.initializeApp(config);
+
+let rootRef = firebase.database().ref('scores');
+
+rootRef.on('value', getData, (err) => console.log(err));
+
+function getData(data) {
+    reload();
+    // console.log(data.val());
+    let playerScores = data.val();
+    let keys = Object.keys(playerScores);
+    // console.log(keys);
+    keys.forEach((i) => { 
+        let name = playerScores[i].name;
+        let score = playerScores[i].score;
+        // console.log(name, score);
+        let li = document.createElement('li');
+        li.classList.add('sli');
+        li.textContent = name + ': ' + score;
+        document.querySelector('.scoreList').appendChild(li);
+    });
+}
+
+function reload() {
+    let sli = document.querySelectorAll('.sli');
+    for (i = 0; i < sli.length; i++) {
+        sli[i].remove(); 
+    }
+}
+// testing 
+// let myHighScore = {
+//     name: "Azez",
+//     score: 120
+// }
+//rootRef.push(myHighScore);
