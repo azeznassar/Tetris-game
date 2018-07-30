@@ -299,25 +299,26 @@ let config = {
   firebase.initializeApp(config);
 
 let rootRef = firebase.database().ref('scores');
+let highestScore = firebase.database().ref('scores').orderByChild('score');
+let db = firebase.database();
+highestScore.on('value', getData, (err) => console.log(err));
 
-rootRef.on('value', getData, (err) => console.log(err));
-
-function getData(data) {
+function getData(snapshot) {
     reload();
-    // console.log(data.val());
-    let playerScores = data.val();
-    let keys = Object.keys(playerScores);
-    // console.log(keys);
-    keys.forEach((i) => { 
-        let name = playerScores[i].name;
-        let score = playerScores[i].score;
-        // console.log(name, score);
+    let scores = [];
+    snapshot.forEach((i) => {
+      scores.unshift(i.val());
+    });
+    for(i = 0; i < scores.length; i++) {
+        let score = scores[i].score;
+        let name = scores[i].name;
+        //console.log(name, score);
         let li = document.createElement('li');
         li.classList.add('sli');
         li.textContent = name + ': ' + score;
         document.querySelector('.scoreList').appendChild(li);
-    });
-}
+    }
+  }
 
 function reload() {
     let sli = document.querySelectorAll('.sli');
